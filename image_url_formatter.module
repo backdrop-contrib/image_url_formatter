@@ -202,7 +202,7 @@ function theme_image_url_formatter($variables) {
     'alt' => $item['alt'],
   );
   // Do not output an empty 'title' attribute.
-  if (drupal_strlen($item['title']) > 0) {
+  if (backdrop_strlen($item['title']) > 0) {
     $image['title'] = $item['title'];
   }
   // Return the URI path.
