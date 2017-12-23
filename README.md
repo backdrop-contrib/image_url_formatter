@@ -1,7 +1,7 @@
 # Image URL Formatter
 
 This module adds a formatter for an image field, enabling a display or
-a view to output the URL of an image file,
+a view to output the URL of an image file.
 
 It is a port to Backdrop of the Drupal module image_url_formatter,
 version 7.x-1.4.
