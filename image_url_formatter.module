@@ -206,7 +206,7 @@ function theme_image_url_formatter($variables) {
     $image['title'] = $item['title'];
   }
   // Return the URI path.
-  if ($variables['url_type'] == 3) {
+  if ($variables['url_type'] == IMAGE_URL_FORMATTER_URI_PATH) {
     return $item['uri'];
   }
   $output = file_create_url($item['uri']);
