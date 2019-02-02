@@ -267,7 +267,7 @@ function image_url_formatter_convert_full_url($url, $format = IMAGE_URL_FORMATTE
 function _image_url_formatter_get_absolute_file_url($url) {
   global $base_url;
   if (strpos($url, $base_url) === 0) {
-    $url = base_path() . ltrim(str_replace($GLOBALS['base_url'], '', $url), '/');
+    $url = base_path() . ltrim(str_replace($base_url, '', $url), '/');
   }
   return $url;
 }
