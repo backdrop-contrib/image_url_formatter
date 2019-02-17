@@ -197,30 +197,36 @@ function image_url_formatter_field_formatter_view($entity_type, $entity, $field,
  */
 function theme_image_url_formatter($variables) {
   $item = $variables['item'];
-  $image = array(
-    'path' => $item['uri'],
-    'alt' => $item['alt'],
-  );
-  // Do not output an empty 'title' attribute.
-  if (backdrop_strlen($item['title']) > 0) {
-    $image['title'] = $item['title'];
-  }
+
   // Return the URI path.
-  if ($variables['url_type'] == 3) {
-    return $item['uri'];
+  if ($variables['url_type'] == IMAGE_URL_FORMATTER_URI_PATH) {
+    if ($variables['image_style']) {
+      // Get URI for derivative image.
+      $output = image_style_path($variables['image_style'], $item['uri']);
+    }
+    else {
+      $output = $item['uri'];
+    }
   }
-  $output = file_create_url($item['uri']);
-  if ($variables['image_style'] && ($variables['item']['type'] == 'image' || $variables['item']['type'] == 'imagefield_crop')) {
-    $image['style_name'] = $variables['image_style'];
-    $output = image_style_url($image['style_name'], $item['uri']);
+  // Return the URL path.
+  else {
+    if ($variables['image_style']) {
+      // Get URL for derivative image.
+      $output = image_style_url($variables['image_style'], $item['uri']);
+    }
+    else {
+      $output = file_create_url($item['uri']);
+    }
+
+    // Convert URL to relative or absolute path
+    $output = image_url_formatter_convert_full_url($output, $variables['url_type']);
   }
-  $output = image_url_formatter_convert_full_url($output, $variables['url_type']);
-  if ($variables['path']) {
+
+  // Linked to content or file
+  if (!empty($variables['path'])) {
     $path = $variables['path']['path'];
-    $path = image_url_formatter_convert_full_url($path, $variables['url_type']);
     $options = $variables['path']['options'];
-    // When displaying an image inside a link, the html option must be TRUE.
-    $options['html'] = TRUE;
+
     $output = l($output, $path, $options);
   }
 
@@ -260,7 +266,7 @@ function image_url_formatter_convert_full_url($url, $format = IMAGE_URL_FORMATTE
 function _image_url_formatter_get_absolute_file_url($url) {
   global $base_url;
   if (strpos($url, $base_url) === 0) {
-    $url = base_path() . ltrim(str_replace($GLOBALS['base_url'], '', $url), '/');
+    $url = base_path() . ltrim(str_replace($base_url, '', $url), '/');
   }
   return $url;
 }
