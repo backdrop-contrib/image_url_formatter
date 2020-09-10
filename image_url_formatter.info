@@ -1,6 +1,4 @@
 name = Image URL Formatter
 description = "Add an URL formatter for image field"
 backdrop = 1.x
-dependencies[] = field
-dependencies[] = image
 type = module
