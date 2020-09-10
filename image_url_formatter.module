@@ -241,7 +241,7 @@ function theme_image_url_formatter($variables) {
 }
 
 /**
- * Converts a full URL to the choosen format.
+ * Converts a full URL to the chosen format.
  *
  * @param string $url
  *   The full URL to convert.
@@ -258,7 +258,7 @@ function theme_image_url_formatter($variables) {
 function image_url_formatter_convert_full_url($url, $format = IMAGE_URL_FORMATTER_FULL_URL) {
   switch ($format) {
     case IMAGE_URL_FORMATTER_FILENAME:
-      $url = _image_url_formater_get_filename($url);
+      $url = _image_url_formatter_get_filename($url);
       break;
 
     case IMAGE_URL_FORMATTER_RELATIVE_PATH:
