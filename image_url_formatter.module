@@ -37,7 +37,7 @@ function image_url_formatter_field_formatter_info() {
   $formatters = array(
     'image_url' => array(
       'label' => t('Image URL'),
-      'field types' => array('file', 'image', 'imagefield_crop'),
+      'field types' => array('image', 'imagefield_crop'),
       'settings' => array(
         'url_type' => '',
         'image_style' => '',
