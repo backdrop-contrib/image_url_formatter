@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Add an URL formatter for image field
+ * Add an URL formatter for an image field.
  */
 
 /**
@@ -152,6 +152,7 @@ function image_url_formatter_field_formatter_settings_summary($field, $instance,
 
   return implode('<br />', $summary);
 }
+
 /**
  * Implements hook_field_formatter_view().
  */
